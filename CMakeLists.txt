@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.1)
 project(JonasArcadeProject)
 
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules" ${CMAKE_MODULE_PATH})
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
 #setting to user c++ 11
 set(CMAKE_CXX_FLAGS "-std=c++0x")
@@ -16,7 +16,7 @@ include_directories("${PROJECT_SOURCE_DIR}/src")
 file(GLOB SRCMAIN   "${PROJECT_SOURCE_DIR}/src/*.cpp")
 
 add_executable( ${EXECUTABLE_NAME}
-                ${SRCMAIN})
+                ${SRCMAIN} src/core/Ball.cpp src/core/Ball.h)
 
 #findind SLD2
 find_package(SDL2 REQUIRED)
