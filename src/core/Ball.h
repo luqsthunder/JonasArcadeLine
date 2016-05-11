@@ -14,12 +14,16 @@ public:
   ~Ball();
 
   void move(glm::vec2 offset);
+  void position(glm::vec2 offset);
 
   void draw() const;
+
 
 protected:
   glm::vec2 _pos;
   GLuint _vbo, _vao;
+  GLfloat _radius;
+  size_t _points;
 };
 
 

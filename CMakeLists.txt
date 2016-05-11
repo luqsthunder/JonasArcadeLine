@@ -14,13 +14,16 @@ include_directories("${PROJECT_SOURCE_DIR}/src")
 
 #colocando para compilar os arquivos sem pastas
 file(GLOB SRCMAIN   "${PROJECT_SOURCE_DIR}/src/*.cpp")
+file(GLOB CORESRCS   "${PROJECT_SOURCE_DIR}/src/core/*.cpp")
 
 add_executable( ${EXECUTABLE_NAME}
-                ${SRCMAIN} src/core/Ball.cpp src/core/Ball.h)
+                ${SRCMAIN}
+                ${CORESRCS})
 
 #findind SLD2
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
+find_package(LibEpoxy REQUIRED)
 
 #adding libs to executable
 if(SDL2_FOUND)
@@ -31,6 +34,12 @@ endif()
 if(SDL2_IMAGE_FOUND)
   include_directories(${SDL2_IMAGE_INCLUDE_DIR})
   target_link_libraries(${EXECUTABLE_NAME} ${SDL2_IMAGE_LIBRARY})
+endif()
+
+if(LibEpoxy_FOUND)
+  message("achei libepoxy")
+  include_directories(${LibEpoxy_INCLUDE_DIR})
+  target_link_libraries(${EXECUTABLE_NAME} ${LibEpoxy_LIBRARIES})
 endif()
 
 install(TARGETS ${EXECUTABLE_NAME} DESTINATION bin)

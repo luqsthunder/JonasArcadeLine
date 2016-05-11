@@ -1,8 +1,13 @@
+#include <epoxy/gl.h>
+#include <epoxy/glx.h>
+
 #include <iostream>
 
 #include <SDL2/SDL.h>
 
 #include <stdexcept>
+
+#include "core/Ball.h"
 
 int main()
 {
@@ -13,9 +18,11 @@ int main()
                                         SDL_WINDOWPOS_CENTERED, 800, 600,
                                         SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
 
-  SDL_Renderer render* = SDL_CreateRenderer(window, -1,
+  SDL_Renderer *render = SDL_CreateRenderer(window, -1,
                                             SDL_RENDERER_ACCELERATED |
                                             SDL_RENDERER_PRESENTVSYNC);
+
+  Ball ball{2, {2, 1}};
 
   bool gameRunning = true;
   SDL_Event event;

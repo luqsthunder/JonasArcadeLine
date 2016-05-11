@@ -4,7 +4,10 @@
 #include <cmath>
 #include <vector>
 
-Ball::Ball(unsigned int radius, glm::vec2 position, size_t points)
+#include <glm/gtc/constants.hpp>
+
+Ball::Ball(unsigned int radius, glm::vec2 position, size_t points) :
+  _radius(radius), _pos(position), _points(points)
 {
   glGenBuffers(1, &_vbo);
   glGenVertexArrays(1, &_vao);
@@ -12,38 +15,40 @@ Ball::Ball(unsigned int radius, glm::vec2 position, size_t points)
   glBindVertexArray(_vao);
   glBindBuffer(GL_ARRAY_BUFFER, _vbo);
 
-  std::vector<GLfloat> ballVertices, firstVertices, lastVertices;
+  std::vector<GLfloat> ballVertices;
   GLfloat domFunIt = -1.f;
   const GLfloat domParts = (std::abs(-1) + std::abs(1)) / ((GLfloat)points);
   // usando as equações y = sqrt(x(x - 1))
   // usando as equações y = -sqrt(x(x - 1))
   // para gerar o circulo
   position = glm::normalize(position);
-  for(size_t x = 0; x < points / 2; ++x)
+  ballVertices.push_back(0.f);
+  ballVertices.push_back(0.f);
+  for(int ii = 0; ii < points; ii++)
   {
-    firstVertices.push_back(x);
-    firstVertices.push_back(std::sqrt(-1 * std::pow(domFunIt, 2) - 1));
+    float theta = 2.0f * 3.1415926f * float(ii) / float(points);//get the
+    // current angle
 
-    lastVertices.push_back(domFunIt);
-    lastVertices.push_back(-1* std::sqrt(-(std::pow(domFunIt, 2) - 1)));
+    float x = 1 * std::cos(theta);//calculate the x component
+    float y = 1 * std::sin(theta);//calculate the y component
 
-    domFunIt += domParts;
+    ballVertices.push_back(x);
+    ballVertices.push_back(y);
   }
-  ballVertices.insert(ballVertices.begin(), firstVertices.begin(),
-                      firstVertices.end());
-  ballVertices.insert(ballVertices.end(), lastVertices.begin(),
-                      lastVertices.end());
 
-  int cont = 0;
+  /*int cont = 0;
   for(const auto& it : ballVertices)
   {
-    std::cout << it << (cont == 3 ? "," : "\n");
-    cont = cont == 3 ? cont + 1 : 0;
-  }
+    std::cout << it << ((cont == 1) ? "\n" : " , ");
+    cont = cont == 1 ? 0 : cont + 1;
+  }*/
 
-  /*glBufferData(GL_ARRAY_BUFFER,sizeof(GLfloat) * ballVertices.size(),
+  glBufferData(GL_ARRAY_BUFFER,sizeof(GLfloat) * ballVertices.size(),
                &ballVertices[0], GL_STATIC_DRAW);
-  glVertexArrayAttribPointer()*/
+  glVertexAttribPointer(0,2 * sizeof(GLfloat), GL_FLOAT, GL_FALSE, 0, 0);
+  glEnableVertexAttribArray(0);
+  glBindBuffer(GL_ARRAY_BUFFER, 0);
+  glBindVertexArray(0);
 }
 
 
@@ -59,6 +64,6 @@ void
 Ball::draw() const
 {
   glBindVertexArray(_vao);
-  //glDrawArrays(GL_TRIANGLE_STRIP,);
+  glDrawArrays(GL_TRIANGLE_FAN, 0, _points);
   glBindVertexArray(0);
 }
