@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "core/IShock.h"
+#include "IShock.h"
 
 class Wall: public sf::Drawable, public IShock
 {
@@ -18,7 +18,7 @@ public:
 
   sf::FloatRect bounds() const;
 
-  virtual void tellMe(const IShock& other) const;
+  virtual void tellMe(IShock& other);
 protected:
   void draw(sf::RenderTarget& target, sf::RenderStates state) const;
 

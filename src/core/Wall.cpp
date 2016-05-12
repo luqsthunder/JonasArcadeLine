@@ -28,10 +28,10 @@ Wall::draw(sf::RenderTarget &target, sf::RenderStates state) const
 sf::FloatRect
 Wall::bounds() const
 {
-  return _shape.getGlobalBounds();
+  return _shape.getLocalBounds();
 }
 
 void
-Wall::tellMe(const IShock &other) const
+Wall::tellMe(IShock &other)
 {
 }

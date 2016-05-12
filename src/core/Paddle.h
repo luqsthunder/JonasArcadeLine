@@ -24,7 +24,7 @@ public:
 
   sf::FloatRect bounds() const;
 
-  virtual void tellMe(const IShock& other) const;
+  virtual void tellMe(IShock& other);
 
 protected:
   void draw(sf::RenderTarget& target, sf::RenderStates state) const;

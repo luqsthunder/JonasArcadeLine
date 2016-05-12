@@ -10,9 +10,9 @@ class IShock
 public:
   virtual sf::FloatRect bounds() const = 0;
 
-  void checkChock(const IShock& other);
+  void checkChock(IShock& other);
 
-  virtual void tellMe(const IShock& other) const = 0;
+  virtual void tellMe(IShock& other) = 0;
 };
 
 #endif //JONASARCADEPROJECT_ISHOCK_H

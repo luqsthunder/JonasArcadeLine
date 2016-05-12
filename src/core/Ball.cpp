@@ -36,7 +36,7 @@ Ball::position() const
 }
 
 void
-Ball::tellMe(const IShock& other)const { }
+Ball::tellMe(IShock& other) { }
 
 sf::FloatRect
 Ball::bounds() const

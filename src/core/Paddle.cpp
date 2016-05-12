@@ -2,9 +2,9 @@
 
 Paddle::Paddle(sf::Vector2f position, sf::Vector2f size) : _shape(size)
 {
-  _shape.setPosition(position);
   _shape.setOrigin(size.x /2, size.y / 2);
-  _horizontal = size.x < size.y;
+  _shape.setPosition(position);
+  _horizontal = size.x > size.y;
 }
 
 void
@@ -37,10 +37,10 @@ Paddle::draw(sf::RenderTarget &target, sf::RenderStates state) const
 sf::FloatRect
 Paddle::bounds() const
 {
-  return _shape.getGlobalBounds();
+  return _shape.getLocalBounds();
 }
 
 void
-Paddle::tellMe(const IShock &other) const
+Paddle::tellMe(IShock &other)
 {
 }

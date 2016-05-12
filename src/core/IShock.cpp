@@ -1,7 +1,9 @@
 #include "IShock.h"
 
-void IShock::checkChock(const IShock &other)
+void IShock::checkChock(IShock &other)
 {
+  auto v = bounds();
+  auto v2 = other.bounds();
   if(bounds().intersects(other.bounds()))
   {
     tellMe(other);
@@ -14,6 +16,6 @@ sf::FloatRect IShock::bounds() const
   return {0, 0, 0, 0};
 }
 
-void IShock::tellMe(const IShock& other) const
+void IShock::tellMe( IShock& other)
 {
 }

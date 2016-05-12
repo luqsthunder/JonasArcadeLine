@@ -12,11 +12,13 @@ public:
   void run();
 
 protected:
-  void initialize();
+  virtual void initialize() = 0;
   virtual void loadContent() = 0;
   virtual void update() = 0;
   virtual void events(sf::Event& evts) = 0;
-  virtual void draw(sf::Window& wnd);
+  virtual void draw(sf::RenderWindow& wnd) = 0;
+
+  bool exitGame;
 };
 
 

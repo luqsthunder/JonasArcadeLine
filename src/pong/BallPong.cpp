@@ -1,12 +1,24 @@
 #include "BallPong.h"
 
-Ball::Ball()
+#include <iostream>
+
+BallPong::BallPong(unsigned int radius, sf::Vector2f pos, size_t points) :
+  Ball(radius, pos, points), dirBall(1,1)
 {
-  super::Ball();
-  _circle.setColor(sf::Color::Blue);
+
+}
+void BallPong::update()
+{
+  move(dirBall);
 }
 
-void Ball::update()
+void BallPong::tellMe( IShock &other)
 {
-  _circle.move({1,1});
+  std::cout << "here now" << std::endl;
+  dirBall = (dirBall.x < 0) ? sf::Vector2f{1, -1} : sf::Vector2f{-1, 1};
 }
+
+
+
+
+
