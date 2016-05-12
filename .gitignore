@@ -1,3 +1,5 @@
+/src/.*
+
 ### Emacs template
 # -*- mode: gitignore; -*-
 *~

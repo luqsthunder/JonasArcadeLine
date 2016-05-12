@@ -2,8 +2,8 @@
 #include <SFML/Window.hpp>
 #include <stdexcept>
 
-#include "core/Ball.h"
-#include "core/Background.h"
+#include "Ball.h"
+#include "Background.h"
 
 int main()
 {

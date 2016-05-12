@@ -5,7 +5,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics/CircleShape.hpp>
 
-#include "core/IShock.h"
+#include "IShock.h"
 
 class Ball : public sf::Drawable, public IShock
 {
