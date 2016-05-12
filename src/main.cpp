@@ -5,11 +5,11 @@
 #include "core/Ball.h"
 #include "core/Background.h"
 
-#include "pong/PongGame.h"
+#include "pong/PongLoop.h"
 
 int main()
 {
-  GameLoop* game = new PongGame;
+  GameLoop* game = new PongLoop;
   game->run();
   delete game;
 

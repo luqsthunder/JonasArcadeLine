@@ -8,11 +8,11 @@
 #include "PaddlePong.h"
 #include "core/ShockSolver.h"
 
-class PongGame : public GameLoop
+class PongLoop : public GameLoop
 {
 public:
-  PongGame();
-  virtual ~PongGame();
+  PongLoop();
+  virtual ~PongLoop();
 
 protected:
   virtual void initialize();

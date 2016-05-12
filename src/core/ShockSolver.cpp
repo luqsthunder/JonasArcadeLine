@@ -5,12 +5,11 @@ ShockSolver::ShockSolver()
 
 void ShockSolver::update()
 {
-  for( auto it1: objs)
+  for(size_t i = 0; i < objs.size(); ++i)
   {
-    for( auto it2 : objs)
+    for(size_t ii = i + 1; ii < objs.size(); ++ii)
     {
-      if(it1 != it2)
-        it1->checkChock(*it2);
+      objs[i]->checkChock(*objs[ii]);
     }
   }
 }

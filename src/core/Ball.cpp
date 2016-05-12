@@ -6,6 +6,10 @@ Ball::Ball(unsigned int radius, sf::Vector2f position, size_t points) :
 _circle(radius, points)
 {
   _circle.setPosition(position);
+  boundsShape.left = _circle.getPosition().x;
+  boundsShape.top = _circle.getPosition().y;
+  boundsShape.width = _circle.getRadius() * 2;
+  boundsShape.height = _circle.getRadius() * 2;
 }
 
 void
@@ -21,12 +25,17 @@ void
 Ball::position(sf::Vector2f pos)
 {
   _circle.setPosition(pos);
+  boundsShape.left = pos.x;
+  boundsShape.top = pos.y;
 }
 
 void
 Ball::move(sf::Vector2f pos)
 {
   _circle.move(pos);
+
+  boundsShape.left += pos.x;
+  boundsShape.top += pos.y;
 }
 
 const sf::Vector2f
@@ -41,5 +50,5 @@ Ball::tellMe(IShock& other) { }
 sf::FloatRect
 Ball::bounds() const
 {
-  return _circle.getGlobalBounds();
+  return boundsShape;
 }

@@ -25,6 +25,7 @@ protected:
   void draw(sf::RenderTarget& target, sf::RenderStates state) const;
 
   sf::CircleShape _circle;
+  sf::FloatRect boundsShape;
 };
 
 

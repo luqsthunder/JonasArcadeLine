@@ -37,7 +37,7 @@ Paddle::draw(sf::RenderTarget &target, sf::RenderStates state) const
 sf::FloatRect
 Paddle::bounds() const
 {
-  return _shape.getLocalBounds();
+  return _shape.getGlobalBounds();
 }
 
 void

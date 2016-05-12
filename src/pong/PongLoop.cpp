@@ -1,10 +1,10 @@
-#include "PongGame.h"
+#include "PongLoop.h"
 
 #include <iostream>
 
 #include <SFML/Graphics.hpp>
 
-PongGame::PongGame() : ball(26, {400, 300}) , wallLeft({15,300}, {30, 600}),
+PongLoop::PongLoop() : ball(26, {400, 300}) , wallLeft({15,300}, {30, 600}),
                        wallRight({800 - 15, 300}, {30, 600}),
                        wallUp({400, 15}, {800,30}),
                        wallDown({400, 600-15}, {800, 30}),
@@ -14,10 +14,10 @@ PongGame::PongGame() : ball(26, {400, 300}) , wallLeft({15,300}, {30, 600}),
 {
 }
 
-PongGame::~PongGame()
+PongLoop::~PongLoop()
 {}
 
-void PongGame::initialize()
+void PongLoop::initialize()
 {
   solver.add(&ball);
   solver.add(&wallLeft);
@@ -28,17 +28,18 @@ void PongGame::initialize()
   solver.add(&right);
 }
 
-void PongGame::loadContent() { }
+void PongLoop::loadContent() { }
 
-void PongGame::update()
+void PongLoop::update()
 {
   ball.update();
   solver.update();
 }
 
-void PongGame::events(sf::Event &evts)
+void PongLoop::events(sf::Event &evts)
 {
-  if(evts.type == sf::Event::Closed)
+  if((evts.type == sf::Event::Closed) or (evts.type == sf::Event::KeyPressed
+                                     and evts.key.code == sf::Keyboard::Escape))
     exitGame = true;
 
   if(evts.type == sf::Event::KeyPressed)
@@ -66,7 +67,7 @@ void PongGame::events(sf::Event &evts)
 
 }
 
-void PongGame::draw(sf::RenderWindow &wnd)
+void PongLoop::draw(sf::RenderWindow &wnd)
 {
   wnd.draw(bkg);
   wnd.draw(wallLeft);

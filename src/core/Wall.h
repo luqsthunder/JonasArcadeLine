@@ -23,6 +23,7 @@ protected:
   void draw(sf::RenderTarget& target, sf::RenderStates state) const;
 
   sf::RectangleShape _shape;
+  sf::FloatRect boundsShape;
 };
 
 #endif

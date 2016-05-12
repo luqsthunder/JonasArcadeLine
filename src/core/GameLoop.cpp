@@ -9,8 +9,9 @@ void GameLoop::run()
   loadContent();
 
   sf::RenderWindow window({800, 600}, "Jonas Arcade Line", sf::Style::Close);
+  window.setFramerateLimit(30);
   sf::Event event;
-  //window.setKeyRepeatEnabled(true);
+  window.setKeyRepeatEnabled(true);
 
   while(not exitGame)
   {

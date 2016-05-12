@@ -12,6 +12,7 @@ public:
 
 protected:
   sf::Vector2f dirBall;
+  int clockCont;
 };
 
 

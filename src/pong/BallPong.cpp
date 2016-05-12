@@ -3,7 +3,7 @@
 #include <iostream>
 
 BallPong::BallPong(unsigned int radius, sf::Vector2f pos, size_t points) :
-  Ball(radius, pos, points), dirBall(1,1)
+  Ball(radius, pos, points), dirBall(1,1), clockCont(0)
 {
 
 }
@@ -14,8 +14,24 @@ void BallPong::update()
 
 void BallPong::tellMe( IShock &other)
 {
-  std::cout << "here now" << std::endl;
-  dirBall = (dirBall.x < 0) ? sf::Vector2f{1, -1} : sf::Vector2f{-1, 1};
+  clockCont = (clockCont + 1) % 4;
+  switch (clockCont)
+  {
+    case 0:
+      dirBall = {1, 1};
+      break;
+    case 1:
+      dirBall = {1, -1};
+      break;
+    case 2:
+      dirBall = {-1, -1};
+      break;
+    case 3:
+      dirBall = {-1, 1};
+      break;
+    default:
+      break;
+  }
 }
 
 
