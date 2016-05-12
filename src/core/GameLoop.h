@@ -1,6 +1,8 @@
 #ifndef JONASARCADEPROJECT_GAMELOOP_HH
 #define JONASARCADEPROJECT_GAMELOOP_HH
 
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 
 class GameLoop
 {
