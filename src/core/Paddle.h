@@ -1,30 +1,36 @@
 #ifndef JONASARCADEPROJECT_PADDLE_H
 #define JONASARCADEPROJECT_PADDLE_H
 
-#include <epoxy/gl.h>
-#include <epoxy/glx.h>
+#include <SFML/Graphics.hpp>
 
-#include <glm/glm.hpp>
+#include "core/IShock.h"
 
-class Paddle
+/// \brief Classe para paddles como do pong ou brick game
+/// so lembrando que a origem do paddle é o meio nao o primeiro vertice
+class Paddle : public sf::Drawable, public IShock
 {
 public:
-  enum class Orientation : bool
-  {
-    Vertical = false,
-    Horizontal = true
-  };
-
-  Paddle(Orientation orient, glm::vec2 position);
+  Paddle(sf::Vector2f position, sf::Vector2f size);
 
 
   /// \brief move o paddle seguindo sua orientação;
   /// \param x positivo direita(vertical) ou baixo(horizontal), negativo
   ///          sequentemente esquerda e cima (vertical, horizontal)
-  void move(GLfloat x);
+  void move(float x);
 
   /// \brief seta posição
-  void position(glm::vec2 position);
+  void position(sf::Vector2f position);
+  const sf::Vector2f position() const;
+
+  sf::FloatRect bounds() const;
+
+  virtual void tellMe(const IShock& other) const;
+
+protected:
+  void draw(sf::RenderTarget& target, sf::RenderStates state) const;
+
+  sf::RectangleShape _shape;
+  bool _horizontal;
 };
 
 

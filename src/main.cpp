@@ -1,42 +1,33 @@
-#include <epoxy/gl.h>
-#include <epoxy/glx.h>
-
-#include <iostream>
-
-#include <SDL2/SDL.h>
-
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 #include <stdexcept>
 
 #include "core/Ball.h"
+#include "core/Background.h"
 
 int main()
 {
-  if(SDL_Init(SDL_INIT_EVERYTHING) < 0)
-    throw std::runtime_error("cant init sdl");
+  sf::RenderWindow window({800, 600}, "Jonas Arcade Line", sf::Style::Close);
+  sf::Event event;
 
-  SDL_Window* window = SDL_CreateWindow("jonas arcade", SDL_WINDOWPOS_CENTERED,
-                                        SDL_WINDOWPOS_CENTERED, 800, 600,
-                                        SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+  Ball ball{5, {400, 300}};
+  Background background{"Content/SpaceBackground.jpg"};
 
-  SDL_Renderer *render = SDL_CreateRenderer(window, -1,
-                                            SDL_RENDERER_ACCELERATED |
-                                            SDL_RENDERER_PRESENTVSYNC);
-
-  Ball ball{2, {2, 1}};
-
-  bool gameRunning = true;
-  SDL_Event event;
-  while(gameRunning)
+  while(window.isOpen())
   {
-    while(SDL_PollEvent(&event))
+    while(window.pollEvent(event))
     {
-      if((event.type == SDL_QUIT) ||
-         (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE))
-        gameRunning = false;
+      if(event.type == sf::Event::Closed or
+        (event.type == sf::Event::KeyReleased and event.key.code ==
+                                                  sf::Keyboard::Escape))
+        window.close();
     }
-    SDL_RenderClear(render);
+    window.clear();
 
-    SDL_RenderPresent(render);
+    window.draw(background);
+    window.draw(ball);
+
+    window.display();
   }
 
   return 0;

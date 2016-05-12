@@ -21,25 +21,12 @@ add_executable( ${EXECUTABLE_NAME}
                 ${CORESRCS})
 
 #findind SLD2
-find_package(SDL2 REQUIRED)
-find_package(SDL2_image REQUIRED)
-find_package(LibEpoxy REQUIRED)
+find_package(SFML 2 COMPONENTS system audio graphics window REQUIRED)
 
 #adding libs to executable
-if(SDL2_FOUND)
-  include_directories(${SDL2_INCLUDE_DIRS})
-  target_link_libraries(${EXECUTABLE_NAME} ${SDL2_LIBRARY})
-endif()
-
-if(SDL2_IMAGE_FOUND)
-  include_directories(${SDL2_IMAGE_INCLUDE_DIR})
-  target_link_libraries(${EXECUTABLE_NAME} ${SDL2_IMAGE_LIBRARY})
-endif()
-
-if(LibEpoxy_FOUND)
-  message("achei libepoxy")
-  include_directories(${LibEpoxy_INCLUDE_DIR})
-  target_link_libraries(${EXECUTABLE_NAME} ${LibEpoxy_LIBRARIES})
+if(SFML_FOUND)
+  include_directories(${SFML_INCLUDE_DIRS})
+  target_link_libraries(${EXECUTABLE_NAME} ${SFML_LIBRARIES})
 endif()
 
 install(TARGETS ${EXECUTABLE_NAME} DESTINATION bin)

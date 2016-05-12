@@ -1,29 +1,30 @@
 #ifndef JONASARCADEPROJECT_BALL_H
 #define JONASARCADEPROJECT_BALL_H
 
-#include <epoxy/gl.h>
-#include <epoxy/glx.h>
-
 #include <cstdio>
-#include <glm/glm.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Graphics/CircleShape.hpp>
 
-class Ball
+#include "core/IShock.h"
+
+class Ball : public sf::Drawable, public IShock
 {
 public:
-  Ball(unsigned int radius, glm::vec2 position, size_t points = 30);
-  ~Ball();
+  Ball(unsigned int radius, sf::Vector2f pos, size_t points = 30);
 
-  void move(glm::vec2 offset);
-  void position(glm::vec2 offset);
+  void update();
 
-  void draw() const;
+  void position(sf::Vector2f pos);
+  const sf::Vector2f position() const;
 
+  void move(sf::Vector2f offset);
 
+  virtual void tellMe(const IShock& other) const;
+  sf::FloatRect bounds() const;
 protected:
-  glm::vec2 _pos;
-  GLuint _vbo, _vao;
-  GLfloat _radius;
-  size_t _points;
+  void draw(sf::RenderTarget& target, sf::RenderStates state) const;
+
+  sf::CircleShape _circle;
 };
 
 

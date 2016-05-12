@@ -1,0 +1,15 @@
+//
+// Created by lucas on 12/05/16.
+//
+
+#ifndef JONASARCADEPROJECT_GAMELOOP_HH
+#define JONASARCADEPROJECT_GAMELOOP_HH
+
+
+class GameLoop
+{
+
+};
+
+
+#endif //JONASARCADEPROJECT_GAMELOOP_HH

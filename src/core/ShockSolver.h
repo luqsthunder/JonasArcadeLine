@@ -1,0 +1,15 @@
+//
+// Created by lucas on 12/05/16.
+//
+
+#ifndef JONASARCADEPROJECT_SHOCKSOLVER_H
+#define JONASARCADEPROJECT_SHOCKSOLVER_H
+
+
+class ShockSolver
+{
+
+};
+
+
+#endif //JONASARCADEPROJECT_SHOCKSOLVER_H
