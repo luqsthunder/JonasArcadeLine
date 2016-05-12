@@ -10,15 +10,17 @@ set(CMAKE_CXX_FLAGS "-std=c++11")
 set(EXECUTABLE_NAME "JonasArcade")
 
 #including dir
-include_directories("${PROJECT_SOURCE_DIR}/src/.output.arcade")
+include_directories("${PROJECT_SOURCE_DIR}/src")
 
 #colocando para compilar os arquivos sem pastas
 file(GLOB SRCMAIN   "${PROJECT_SOURCE_DIR}/src/*.cpp")
-file(GLOB CORESRCS   "${PROJECT_SOURCE_DIR}/src/.output.arcade/*.cpp")
+file(GLOB CORESRCS   "${PROJECT_SOURCE_DIR}/src/core/*.cpp")
+file(GLOB PONGSRCS   "${PROJECT_SOURCE_DIR}/src/pong/*.cpp")
 
 add_executable( ${EXECUTABLE_NAME}
                 ${SRCMAIN}
-                ${CORESRCS})
+                ${CORESRCS}
+                ${PONGSRCS})
 
 #findind SLD2
 find_package(SFML 2 COMPONENTS system audio graphics window REQUIRED)
